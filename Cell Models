@@ -1,0 +1,5 @@
+# Cell Models
+
+GEMs will be used to investigate the cells metabolic flux and growth. Two models will be created:
+- One containing the eight genes that are used in the project (bphA1, bphA2, bphA3, bphA4, bphB, bphC, bphD, bphK, pcbA5)
+- One containg further reactions in addition to the eight genes, degrading the PCB into Pyruvate
