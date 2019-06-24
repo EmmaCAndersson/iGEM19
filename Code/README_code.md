@@ -3,10 +3,10 @@ This file will contain all code used for the modeling project. Below, you can fi
 
 ## GEMs
 
-Complete_cell_model
+Complete_GEM
 - This model will be a GEM of S. cerevisiae, also containing the eight reactions which are also used in the iGEM wet lab project. 
 
-Extended_cell_model
+Extended_GEM
 - This model will be an extention of the Complete_cell_model, with additional pathways for further conversion of PCB into pyruvate.
 
 ##  Reactor Modeling
