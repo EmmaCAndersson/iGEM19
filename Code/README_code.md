@@ -9,5 +9,5 @@ Complete_GEM
 Extended_GEM
 - This model will be an extention of the Complete_cell_model, with additional pathways for further conversion of PCB into pyruvate.
 
-##  Reactor Modeling
+##  Reactor Model
 This will be a model of the envisioned product, visualized as a reactor. 
