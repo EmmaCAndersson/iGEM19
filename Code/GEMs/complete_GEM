@@ -32,12 +32,12 @@ Scemodel.rxnNames(find(strcmp(Scemodel.rxns,'r_2111')))
 
 
 %% Change your model
-%Set objective function to growth
+% Set objective function to growth
 Scemodel=setParam(Scemodel,'obj','r_4041',1);
 
-%Confirm that it is functioning
+% Confirm that it is functioning
 sol=solveLP(Scemodel,1)
 
-%Look at exchange fluxes and growth
+% Look at exchange fluxes and growth
 printFluxes(Scemodel,sol.x)
 
