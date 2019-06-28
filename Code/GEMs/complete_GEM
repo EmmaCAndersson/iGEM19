@@ -1,8 +1,43 @@
-%% Ensure Raven installation was successful
+%% Download RAVEN toolbox
 
+% Download the RAVEN toolbox from
+% https://github.com/SysBioChalmers/RAVEN
+% Unzip the file in the directory you will be working in
+
+% Ensure Raven installation was successful
 global CBT_LP_SOLVER
 CBT_LP_SOLVER = 'glpk';
 checkInstallation;
-%%
-load('yeastGEM.mat');
+
+
+%% Load S. cerevisiae model
+Scemodel=importModel('yeastGEM.xml');
+
+
+%% Investigate your model
+
+% You can now discover your model by clicking on it (in your workspace)
+% You can also investigate it directly in the command wiindow:
+Scemodel
+
+% Use the find- and strcmp commmands to find indices of striings in different matrices
+% Example: find acetyl-CoA in the vector with metabolite names
+find(strcmp(Scemodel.metNames,'acetyl-CoA'))
+
+% To see which reaction is doing what:
+% Example: find out what reaction 2111 is doing
+% Note that the numbers of the reactions NOT are the same as the index
+% numbers!
+Scemodel.rxnNames(find(strcmp(Scemodel.rxns,'r_2111')))
+
+
+%% Change your model
+%Set objective function to growth
+Scemodel=setParam(Scemodel,'obj','r_4041',1);
+
+%Confirm that it is functioning
+sol=solveLP(Scemodel,1)
+
+%Look at exchange fluxes and growth
+printFluxes(Scemodel,sol.x)
 
