@@ -10,6 +10,8 @@ CBT_LP_SOLVER = 'glpk';
 checkInstallation;
 
 
+%Download the yeastGEM.xml file. You can find it in/Code/GEMs
+
 %% Load S. cerevisiae model
 Scemodel=importModel('yeastGEM.xml');
 
