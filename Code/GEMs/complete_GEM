@@ -43,3 +43,7 @@ sol=solveLP(Scemodel,1)
 % Look at exchange fluxes and growth
 printFluxes(Scemodel,sol.x)
 
+
+% When adding the reactions to our model, we first need to transfer our Excel cell array into MATLAB. Here's a link on how to do that: ( https://se.mathworks.com/help/exlink/mlputmatrix.html )
+% Then we can use tha command 'addRxns'.
+
