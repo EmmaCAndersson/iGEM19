@@ -7,7 +7,7 @@ Team Chalmers Gothenburg, iGEM 2019, strives towards using *Saccharomyces cerevi
 
 ## Directories
 
-Thie iGEM19 repository contains the following directories:
+The iGEM19 repository contains the following directories:
 * Code: Holds the code for the different parts of the modeling project.
 * Bin: Includes external models, scripts or programs applied in this project.
 * Results: Contains figures and tables obtained from the code. 
