@@ -46,16 +46,18 @@ printFluxes(Scemodel,sol.x)
 
 %% Add metabolites, genes and reactions
 
+%pcbA5
+
 metsToAdd.mets={'name of vector/column w. metabolite id'}; %mets are called s_xxxx
 metsToAdd.metNames={'name of vector/column w. metNames'}; %actual names, like 'biphenyl'
 Scemodel=addMets(Scemodel,metsToAdd);
 
-metsToAdd=[];
+metsToAdd=[]; % Making sure the metsToAdd structure is empty before adding mets for the next reaction step
 
 genesToAdd.genes={'vecor w. genes'};
 Scemodel=addGenesRaven{Scemodel,genesToAdd};
 
-genesToAdd=[];
+genesToAdd=[]; % Making sure the genesToAdd structure is empty before adding genes for the next reaction step
 
 rxnsToAdd.rxns={'name of vector/column w. reaction id'}; %r_xxxx
 rxnsToAdd.rxnNames={'name of vector/column w. reaction names'};
@@ -67,5 +69,8 @@ rxnsToAdd.ub{'vector for upper bound'}
 rxnsToAdd.lb={'vector for lower bound'}
 Scemodel=addRxns(Scemodel,rxnsToAdd);
 rxnsToAdd.c={zeroes??}
-rxnsToAdd=[];
+rxnsToAdd=[]; % Making sure the rxnsToAdd structure is empty before adding rxns for the next reaction step
+
+%bphA
+
 
