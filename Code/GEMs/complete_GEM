@@ -44,6 +44,8 @@ sol=solveLP(Scemodel,1)
 printFluxes(Scemodel,sol.x)
 
 
+%Import vectors w. information about the, metabolites, genes and reactions, from Excel.
+
 %% Add metabolites, genes and reactions
 
 %pcbA5
