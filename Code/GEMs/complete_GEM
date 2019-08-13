@@ -44,6 +44,28 @@ sol=solveLP(Scemodel,1)
 printFluxes(Scemodel,sol.x)
 
 
-% When adding the reactions to our model, we first need to transfer our Excel cell array into MATLAB. Here's a link on how to do that: ( https://se.mathworks.com/help/exlink/mlputmatrix.html )
-% Then we can use tha command 'addRxns'.
+%% Add metabolites, genes and reactions
+
+metsToAdd.mets={'name of vector/column w. metabolite id'}; %mets are called s_xxxx
+metsToAdd.metNames={'name of vector/column w. metNames'}; %actual names, like 'biphenyl'
+Scemodel=addMets(Scemodel,metsToAdd);
+
+metsToAdd=[];
+
+genesToAdd.genes={'vecor w. genes'};
+Scemodel=addGenesRaven{Scemodel,genesToAdd};
+
+genesToAdd=[];
+
+rxnsToAdd.rxns={'name of vector/column w. reaction id'}; %r_xxxx
+rxnsToAdd.rxnNames={'name of vector/column w. reaction names'};
+rxnsToAdd.mets={'name of vector/column w. metabolite id'};
+rxnsToAdd.comps={'vector w. comps'}; %ex. [c]//[c]//[c]//[c]
+rxnsToAdd.stoichCoeffs={'vector w. stochiometric coefficients for the rxns'}; %ex. 1//1//-1///-1
+rxnsToAdd.grRules={'vecor w. genes'}; %'pcbA5'
+rxnsToAdd.ub{'vector for upper bound'}
+rxnsToAdd.lb={'vector for lower bound'}
+Scemodel=addRxns(Scemodel,rxnsToAdd);
+rxnsToAdd.c={zeroes??}
+rxnsToAdd=[];
 
