@@ -64,7 +64,7 @@ genesToAdd=[]; % Making sure the genesToAdd structure is empty before adding gen
 rxnsToAdd.rxns={'name of vector/column w. reaction id'}; %r_xxxx
 rxnsToAdd.rxnNames={'name of vector/column w. reaction names'};
 rxnsToAdd.mets={'name of vector/column w. metabolite id'};
-rxnsToAdd.comps={'vector w. comps'}; %ex. [c]//[c]//[c]//[c]
+rxnsToAdd.compartments={'vector w. comps'}; %ex. [c]//[c]//[c]//[c]
 rxnsToAdd.stoichCoeffs={'vector w. stochiometric coefficients for the rxns'}; %ex. 1//1//-1///-1
 rxnsToAdd.grRules={'vecor w. genes'}; %'pcbA5'
 rxnsToAdd.ub{'vector for upper bound'}
