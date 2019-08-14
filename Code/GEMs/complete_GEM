@@ -22,13 +22,13 @@ Scemodel=importModel('yeastGEM.xml');
 % You can also investigate it directly in the command wiindow:
 Scemodel
 
-% Use the find- and strcmp commmands to find indices of striings in different matrices
+% Use the find- and strcmp commands to find indices of strings in different matrices
 % Example: find acetyl-CoA in the vector with metabolite names
 find(strcmp(Scemodel.metNames,'acetyl-CoA'))
 
 % To see which reaction is doing what:
 % Example: find out what reaction 2111 is doing
-% Note that the numbers of the reactions NOT are the same as the index
+% Note that the numbers of the reactions are NOT the same as the index
 % numbers!
 Scemodel.rxnNames(find(strcmp(Scemodel.rxns,'r_2111')))
 
