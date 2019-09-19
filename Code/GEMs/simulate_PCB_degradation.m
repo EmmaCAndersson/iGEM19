@@ -68,33 +68,35 @@ dichlor_matches=strfind(exchange_names,'dichlorobi');
 dichlor_positions=~cellfun(@isempty,dichlor_matches);
 dichlor_index=index(dichlor_positions);
 
+benzoate_matches=strfind(exchange_names,'benzoate');
+benzoate_positions=~cellfun(@isempty,benzoate_matches);
+benzoate_index=index(benzoate_positions);
+
 %--------------------------------------------------------------------------
 % Plotting section
 %--------------------------------------------------------------------------
 
 % Set color palette
-color0 = [25,25,25]./255;
-color1 = [226,125,96]./255;
-color2 = [61,90,128]./255;
-color3 = [232,168,124]./255;
-color4 = [167,198,206]./255;
-color5 = [61,128,127]./255;
-color6 = [195,141,158]./255;
-bg_color = [225,233,235]./255;
+black = [25,25,25]./255;
+green = [61,128,127]./255;
+dark_blue = [61,90,128]./255;
+light_blue = [167,198,206]./255;
+dark_orange = [226,125,96]./255;
+light_orange = [232,168,124]./255;
+purple = [195,141,158]./255;
+pink = [255,191,191]./255;
+white_ish = [225,233,235]./255;
 
 % Collect the colors in a matrix (for plotting convenience).
-colors = [color0
-    color1
-    color2
-    color3
-    color4
-    color5
-    color6
-    bg_color];
-
-% Plot each bar individually and assign a color to the bar based on the
-% type of compound it represents.
-set(gcf,'color',bg_color);
+colors = [black
+    dark_orange
+    light_orange
+    green
+    dark_blue
+    light_blue
+    purple
+    pink
+    white_ish];
 
 % Want to collect all compounds of the same type in a single bar to
 % simplify the plot. Start by predefining each 'class'.
@@ -105,7 +107,8 @@ penta = 0;
 tetra = 0;
 tri = 0;
 di = 0;
-met = 0;
+benz = 0;
+oxoval = 0;
 
 % Add the fluxes to the corresponding 'class'.
 for i = 1:length(exchange_rxns)
@@ -123,27 +126,31 @@ for i = 1:length(exchange_rxns)
         tri = tri + exchange_rxns(i);
     elseif ismember(i,dichlor_index)
         di = di + exchange_rxns(i);
+    elseif ismember(i,benzoate_index)
+        benz = benz + exchange_rxns(i);
     else
-        met = met + exchange_rxns(i);
+        oxoval = oxoval + exchange_rxns(i);
     end
 end
 
 % Collect the classes in a vector to be plotted.
-groups = [octa,hepta,hexa,penta,tetra,tri,di,met];
+groups = [octa,hepta,hexa,penta,tetra,tri,di,benz,oxoval];
 
 % Plot the bars independenly to make each a different color.
+set(gcf,'color',white_ish);
 figure(1)
 hold on
 for i = 1:length(groups)
     b = bar(i,groups(i));
     set(b,'FaceColor',colors(i,:));
 end
+axis([0,10,-30,70]);
 
 % Make a legend 
 legend('Octachlorinated biphenyl','Heptachlorinated biphenyl',...
      'Hexachlorinated biphenyl','Pentachlorinated biphenyl',...
      'Tetrachlorinated biphenyl','Trichlorinated biphenyl',...
-     'Dichlorinated biphenyl','Pathway end products');
+     'Dichlorinated biphenyl','Benzoates','4-Hydroxy-2-oxovalerates');
 
 % Add titles and labels to the graph.
 title('Conversion and degradation of PCB congeners')
