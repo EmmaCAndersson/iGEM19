@@ -1,11 +1,11 @@
-%% 1. Raven installation
+%% 0. Raven installation
 clear all, clc
 % Make sure that RAVEN is successfully installed and running as intended
 global CBT_LP_SOLVER
 CBT_LP_SOLVER = 'glpk';
 checkInstallation;
 
-%% 2. Load GEM for S. cerevisiae
+%% 1. Load GEM for S. cerevisiae
 % Load provided S. cerevisiae model
 model=importModel('yeastGEM.xml');
 
@@ -13,7 +13,7 @@ model=importModel('yeastGEM.xml');
 solveLP(model)
 printFluxes(model,ans.x)
 
-%% 3. Add missing metabolites & genes
+%% 2. Add missing metabolites & genes
 % Before adding the reactions required for PCB degradation, all of the
 % involved metabolites and genes will first be integrated into the model 
 % separately. This will make it easier to keep track of the fluxes later.
@@ -36,13 +36,13 @@ model = addMets(model,metsToAdd);
 genesToAdd.genes = {'bphA1234','bphB','bphC','bphD','bphK','pcbA5'};
 model = addGenesRaven(model,genesToAdd);
 
-%% 4.1 Add incolmplete PCB degradation pathway
+%% 3.1 Add incolmplete PCB degradation pathway
 clc
 % Here the PCB degradation pathway is integrated into the model, simulating
 % what will be done in the lab. In order to run this section, make sure
 % that the excel sheets titled 'bphA.xlsx', 'bphB.xlsx', 'bphC.xlsx',
 % 'bphD.xlsx', 'bphK.xlsx' and 'transport_and_exchange.xlsx' are in the
-% current directory, along with the function file 'add_to_model.m'. 
+% current directory, along with the function file 'add_to_model.m'.
 
 % Use 'add_to_model.m' to add the information from each excel sheet into
 % the model.
@@ -69,7 +69,7 @@ model=add_to_model(model,pcbA5);
 transport_and_exchange = readtable('transport_and_exchange.xlsx');
 model=add_to_model(model,transport_and_exchange);
 
-%% 4.2 Add remaining genes to complete the pathway
+%% 3.2 Add remaining genes to complete the pathway
 clc
 % Also want to investigate the effect a complete pathway would have on the
 % PCB degrading capabilities. In order to run this section, make sure that
@@ -79,15 +79,14 @@ clc
 bphHIJ = readtable('bphHIJ.xlsx');
 model=add_to_model(model,bphHIJ);
 
-
-%% 5. Run simulations with the model
+%% 4 Run simulations
 clc, clf
 % Use the 'simulate_PCB_degradation.m' function file to perform simulations
 % and plot the results. 
 
 simulate_PCB_degradation(model);
 
-%% 6. Change objective function
+%% 5. Change objective function to benzoate production
 % The default objective function for the model is growth. While this is
 % reasonable, in order to investigate the theoretical maximum capacity of
 % the model to degrade PCB, a new simulation will be run where the
@@ -102,8 +101,8 @@ model.c = zeros(length(model.rxns),1);
 % chlorobenzoate exchange reactions.
 index = 1:length(model.rxns);
 benzoate_matches=strfind(model.rxnNames,'benzoate exchange');
-benzoae_positions=~cellfun(@isempty,benzoate_matches);
-benzoate_index=index(benzoae_positions);
+benzoate_positions=~cellfun(@isempty,benzoate_matches);
+benzoate_index=index(benzoate_positions);
 
 % Set new objective function
 model.c(benzoate_index) = 1;
