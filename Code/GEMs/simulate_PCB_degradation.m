@@ -30,7 +30,7 @@ exchange_rxns(positions_to_remove) = [];
 exchange_names(positions_to_remove) = [];
 
 % Remove chloride exchange as it makes plot unbalanced
-chloride_match=strfind(exchange_names,'Chlorine exchange');
+chloride_match=strfind(exchange_names,'chlorine exchange');
 chloride_position=~cellfun(@isempty,chloride_match);
 exchange_rxns(chloride_position)=[];
 exchange_names(chloride_position)=[];
@@ -144,7 +144,7 @@ for i = 1:length(groups)
     b = bar(i,groups(i));
     set(b,'FaceColor',colors(i,:));
 end
-axis([0,10,-30,70]);
+axis([0,10,-0.30,0.70]);
 
 % Make a legend 
 legend('Octachlorinated biphenyl','Heptachlorinated biphenyl',...
@@ -153,7 +153,7 @@ legend('Octachlorinated biphenyl','Heptachlorinated biphenyl',...
      'Dichlorinated biphenyl','Benzoates','4-Hydroxy-2-oxovalerates');
 
 % Add titles and labels to the graph.
-title('Conversion and degradation of PCB congeners')
+title('Degradation/production of PCB congeners and degradation products')
 xlabel('Compound class')
 ylabel('Reaction rate')
 
