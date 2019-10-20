@@ -17,6 +17,7 @@ Excel sheets
 - pcbA5.xlsx: Excel sheet containing all possible reactions that are catalyzed by the enzyme PcbA5.
 - metsToAdd_all.xlsx: Excel sheet containing all of the metabolites that are involved in the PCB degradation pathway.
 
+Additional files
+- yeast.xml: Genome-scale metabolic model of S. cerevisiae. Acquired from Chalmers Sysbio department, [here](https://github.com/SysBioChalmers/yeast-GEM). 
+
 The different sections of the main files ‘PCBDegradationGEM.m’ and ‘PCBDechlorinationGEM.m’ are used to load the model, integrate additional reactions using the function file ‘add_to_model.m’ as well as run simulations on the generated models using the function file ‘simulate_PCB_degradation.m’ and ‘simulate_PCB_dechlorination.m’. Please note that in order to run these files it is a requirement to have the RAVEN toolbox installed, as well as having all of the relevant files and excel sheets described above in the working directory.
-In addition, you will need the yeastGEM.xml file which we are using in the scripts. You can get it by downloading and extracting the S. cerevisiae GEM, from Chalmers Sysbio department, [here](https://github.com/SysBioChalmers/yeast-GEM). 
-The yeastGEM.xml file is then found in yeast-GEM-MASTER/ModelFiles. Move it to the directory you are working in.
